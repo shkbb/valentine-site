@@ -172,9 +172,9 @@ body {
 </div>
 
 <div class="gallery">
-    <img src="photos/photo1.jpg">
-    <img src="photos/photo2.jpg">
-    <img src="photos/photo3.jpg">
+    <img src="photos/photo1.JPG">
+    <img src="photos/photo2.JPG">
+    <img src="photos/photo3.JPG">
 </div>
 
 <div class="poem">
@@ -294,7 +294,6 @@ setInterval(() => {
 const bgMusic = document.getElementById("bgMusic");
 let player;
 
-// старт музики після відкриття сайту
 function openSite() {
     const intro = document.getElementById("intro");
     intro.style.opacity = "0";
@@ -318,7 +317,6 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerStateChange(event) {
 
-    // якщо відео грає
     if (event.data === YT.PlayerState.PLAYING) {
         bgMusic.pause();
     }
