@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для тебе 💖</title>
+
+<style>
+
+.footer {
+    margin-top: 80px;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    font-size: 0.95rem;
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+.footer-links {
+    margin: 15px 0;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    opacity: 0.85;
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.footer p {
+    margin: 8px 0;
+    opacity: 0.8;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    cursor: pointer;
+    transition: opacity 1s ease;
+}
+
+#intro h1 {
+    font-size: 2.5rem;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1);}
+    50% { transform: scale(1.1);}
+    100% { transform: scale(1);}
+}
+
+.hero {
+    padding: 100px 20px 40px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.counter {
+    font-size: 1.3rem;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 40px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 20px;
+    transition: 0.4s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+.poem {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: auto;
+    font-size: 1.2rem;
+    line-height: 0.8;
+    min-height: 150px;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.video {
+    padding: 40px 20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    top: -20px;
+    font-size: 20px;
+    opacity: 0.8;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="hearts-container"></div>
+
+<div id="intro" onclick="openSite()">
+    <h1>Натисни щоб відкрити 💖</h1>
+    <p>(і приготуйся трошки розтанути)</p>
+</div>
+
+<div class="hero">
+    <h1>З Днем Святого Валентина 💖</h1>
+    <div class="counter" id="daysTogether"></div>
+</div>
+
+<div class="gallery">
+    <img src="photos/photo1.jpg">
+    <img src="photos/photo2.jpg">
+    <img src="photos/photo3.jpg">
+</div>
+
+<div class="poem">
+    <h2>Для тебе 🌹</h2>
+    <p id="typedPoem"></p>
+</div>
+
+<div class="video">
+    <h2>Пісенька від гурту, який не так давно заїв в нас, але вже асоціюється в мене з нами:3</h2>
+
+    <iframe 
+    id="ytVideo"
+    width="1120"
+    height="630" 
+    src="https://www.youtube.com/embed/FLyi-1a-uR0?enablejsapi=1"
+    title="YouTube video player"
+    frameborder="0"
+    allowfullscreen>
+    </iframe>
+
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+
+function openSite() {
+    document.getElementById("intro").style.opacity = "0";
+    setTimeout(() => {
+        document.getElementById("intro").style.display = "none";
+    }, 1000);
+}
+
+const startDate = new Date("2025-12-07");
+const today = new Date();
+const diffTime = today - startDate;
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+document.getElementById("daysTogether").innerHTML =
+    `Ми разом вже ${diffDays} днів 💕`;
+
+const poemText = `
+В цей день, люди зазвичай кажуть кохаю
+Проте, мені здається для тебе це замало)
+Тому все це зробив для тебе я
+Бо хочу аби ти була моя сім'я:>
+
+Мені приємно це відчути
+Як рука твоя торкається моєї
+І разом ми сповнені цього кохання
+Йдемо, по шляху своєму.
+
+Такі чарівні твої очі,
+Що сповнюють життєвих сил мене,
+Наштовхують на нові зверхи
+Задля щастя нашого виття
+
+Можливо гірший з мене тут поет)),
+Все ж втебе ліпше це виходить,
+Та хочу я закарбувати тобі спогад
+Про перший такий день наш:3
+`;
+
+const poemLines = poemText.trim().split("\n");
+let lineIndex = 0;
+let charIndex = 0;
+
+function typeLine() {
+    if (lineIndex < poemLines.length) {
+
+        if (charIndex < poemLines[lineIndex].length) {
+            document.getElementById("typedPoem").innerHTML += 
+                poemLines[lineIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(typeLine, 35);
+        } 
+        else {
+            document.getElementById("typedPoem").innerHTML += "<br><br>";
+            lineIndex++;
+            charIndex = 0;
+            setTimeout(typeLine, 1000);
+        }
+
+    }
+}
+
+window.onload = function() {
+    typeLine();
+};
+
+const heartsContainer = document.querySelector(".hearts-container");
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    const size = Math.random() * 20 + 15;
+    heart.style.fontSize = size + "px";
+
+    const duration = Math.random() * 3 + 4;
+    heart.style.animationDuration = duration + "s";
+
+    heartsContainer.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, duration * 1000);
+}
+
+setInterval(() => {
+    createHeart();
+}, 1000);
+
+const bgMusic = document.getElementById("bgMusic");
+let player;
+
+// старт музики після відкриття сайту
+function openSite() {
+    const intro = document.getElementById("intro");
+    intro.style.opacity = "0";
+    intro.style.pointerEvents = "none";
+
+    bgMusic.play().catch(() => {});
+
+    setTimeout(() => {
+        intro.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 1000);
+}
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player("ytVideo", {
+        events: {
+            "onStateChange": onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerStateChange(event) {
+
+    // якщо відео грає
+    if (event.data === YT.PlayerState.PLAYING) {
+        bgMusic.pause();
+    }
+
+    if (
+        event.data === YT.PlayerState.PAUSED ||
+        event.data === YT.PlayerState.ENDED
+    ) {
+        bgMusic.play().catch(() => {});
+    }
+}
+
+</script>
+
+<footer class="footer">
+    <div class="footer-content">
+
+        <p>Для моєї коханої дівчинки!! 💖</p>
+
+        <div class="footer-links">
+            <a href="https://t.me/shk_b" target="_blank">Telegram</a>
+            <a href="mailto:illoveyou0712@gmail.com">Email</a>
+            <a href="https://maps.app.goo.gl/XayoxSptrqE2o9i98" target="_blank">
+                Наше місце на Google Maps
+            </a>
+        </div>
+
+        <p class="copyright">
+            © 2026 Усі права захищені.
+        </p>
+
+    </div>
+</footer>
+
+</body>
+</html>
